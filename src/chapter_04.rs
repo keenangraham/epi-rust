@@ -28,6 +28,23 @@ fn extract_lowest_bit(x: u32) -> u32 {
 }
 
 
+fn bits_are_equal(x: &u32, &first_position: &u32, second_position: &u32) -> bool {
+    if (x >> first_position) & 1 == (x >> second_position) & 1 {
+        return true;
+    }
+    false
+}
+
+
+fn swap_bits(mut x: u32, first_position: u32, second_position: u32) -> u32 {
+    if !bits_are_equal(&x, &first_position, &second_position) {
+        let bit_mask = (1 << first_position) | (1 << second_position);
+        x = x ^ bit_mask;
+    }
+    x
+}
+
+
 #[cfg(test)]
 mod tests {
     use super::*;
@@ -71,5 +88,24 @@ mod tests {
         assert_eq!(extract_lowest_bit(4), 4);
         assert_eq!(extract_lowest_bit(7), 1);
         assert_eq!(extract_lowest_bit(8), 8);
+    }
+
+
+    #[test]
+    fn test_bits_are_equal() {
+        assert_eq!(bits_are_equal(&3, &0, &0), true);
+        assert_eq!(bits_are_equal(&3, &0, &1), true);
+        assert_eq!(bits_are_equal(&4, &0, &1), true);
+        assert_eq!(bits_are_equal(&4, &0, &2), false);
+    }
+
+
+    #[test]
+    fn test_swap_bits() {
+        assert_eq!(swap_bits(4, 0, 2), 1);
+        assert_eq!(swap_bits(21, 2, 3), 25);
+        assert_eq!(swap_bits(21, 3, 2), 25);
+        assert_eq!(swap_bits(21, 3, 3), 21);
+        assert_eq!(swap_bits(55, 0, 3), 62);        
     }
 }
