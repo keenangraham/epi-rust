@@ -21,6 +21,7 @@ fn count_bits_fun(x: u32) -> u32 {
 #[cfg(test)]
 mod tests {
     use super::*;
+
     
     #[test]
     fn test_count_bits() {
@@ -33,6 +34,7 @@ mod tests {
         assert_eq!(count_bits(std::u32::MAX), 32);
     }
 
+    
     #[test]
     fn test_count_bits_fun() {
         assert_eq!(count_bits_fun(0), 0);
