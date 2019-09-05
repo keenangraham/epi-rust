@@ -18,6 +18,16 @@ fn count_bits_fun(x: u32) -> u32 {
 }
 
 
+fn clear_lowest_bit(x: u32) -> u32 {
+    x & (x - 1)
+}
+
+
+fn extract_lowest_bit(x: u32) -> u32 {
+    x & !(x - 1)
+}
+
+
 #[cfg(test)]
 mod tests {
     use super::*;
@@ -44,5 +54,22 @@ mod tests {
         assert_eq!(count_bits_fun(10013), 8);
         assert_eq!(count_bits_fun(4294967292), 30);        
         assert_eq!(count_bits_fun(std::u32::MAX), 32);
+    }
+
+
+    #[test]
+    fn test_clear_lowest_bit() {
+        assert_eq!(clear_lowest_bit(3), 2);
+        assert_eq!(clear_lowest_bit(7), 6);
+        assert_eq!(clear_lowest_bit(8), 0);
+    }
+
+
+    #[test]
+    fn test_extract_lowest_bit() {
+        assert_eq!(extract_lowest_bit(3), 1);
+        assert_eq!(extract_lowest_bit(4), 4);
+        assert_eq!(extract_lowest_bit(7), 1);
+        assert_eq!(extract_lowest_bit(8), 8);
     }
 }
