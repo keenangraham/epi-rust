@@ -39,7 +39,7 @@ fn bits_are_equal(x: &u32, &first_position: &u32, second_position: &u32) -> bool
 fn swap_bits(mut x: u32, first_position: u32, second_position: u32) -> u32 {
     if !bits_are_equal(&x, &first_position, &second_position) {
         let bit_mask = (1 << first_position) | (1 << second_position);
-        x = x ^ bit_mask;
+        x ^= bit_mask;
     }
     x
 }
