@@ -1,1 +1,1 @@
-Solutions to the *Elements of Programming Interviews in Python* exercises implemented in Rust.
+Some examples from *Elements of Programming Interviews in Python* implemented in Rust.
